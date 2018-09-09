@@ -1,0 +1,46 @@
+primitive data type category
+undefine
+null
+boolean
+number
+string
+symbol
+
+1. Using the Object() Constructor
+
+var obj = new Object();
+obj.firstName = "Geeks";
+obj.middleName = "for";
+obj.lastName = "Geeks";
+obj.isTeaching = "Javascipt";
+obj.greet = function() { console.log("Hi"); }
+
+2.Using Object literal
+
+var obj = {} //obj is an empty object
+obj.firstName = "Geeks";
+obj.middleName = "for";
+obj.lastName = "Geeks";
+obj.isTeaching = "Javascipt";
+obj.greet = function() { console.log("Hi"); }
+
+3. Directly specifying the values
+
+var obj = { 
+    obj.firstName = "Geeks";
+    obj.middleName = "for";
+    obj.lastName = "Geeks";
+    obj.isTeaching = "Javascipt";
+    obj.greet = function() { console.log("Hi"); }
+}
+
+typecasting in js called Coercion
+Coercion: What we call typecasting in C, C++, Java, it is called coercion in JavaScript.
+
+var x = 42;
+var explicit = String(x);
+
+var x = 42;
+var implicit = x + " "; 
+
+Hoisting: – Function definitions are hoisted but not variable declarations. This means that when a function is declared, it is usable from anywhere within your code.
