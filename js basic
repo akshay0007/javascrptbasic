@@ -45,4 +45,14 @@ var implicit = x + " ";
 
 Hoisting: – Function definitions are hoisted but not variable declarations. This means that when a function is declared, it is usable from anywhere within your code.
 
+bind, call and apply
+bind(), call() and apply() are all used to modify the context of a function. All three of these help explicitly specify what the value of this should be inside a function.
+But, there are certain differences in how each of them work. Let us study these differences.
+
+fruits.call(banana, 'yummy')
+fruits.apply(orange, [ 'sour' ])
+
+
+However, one major difference between them and bind() is that call() and apply() immediately calls the function, as opposed to simply preparing a copy of the function with a bound this value for future use.
+maps and sets::
 
