@@ -44,3 +44,5 @@ var x = 42;
 var implicit = x + " "; 
 
 Hoisting: – Function definitions are hoisted but not variable declarations. This means that when a function is declared, it is usable from anywhere within your code.
+
+
