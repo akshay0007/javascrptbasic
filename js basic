@@ -56,3 +56,26 @@ fruits.apply(orange, [ 'sour' ])
 However, one major difference between them and bind() is that call() and apply() immediately calls the function, as opposed to simply preparing a copy of the function with a bound this value for future use.
 maps and sets::
 
+JavaScript | ‘===’ vs ‘==’Comparision Operator::
+In JavaScript, ‘===’ Operator is used to check whether 2 entities are of equal values as well as of equal size and provides a boolean result.
+
+The == operator will compare for equality after doing any necessary type conversions. The === operator will not do any conversion before comparing, so if two values are not of the same type, === will simply return false.
+
+
+function functionname[...parameters]//... is the rest operator
+
+JavaScript | Rest Operator
+JavaScript | Spread Operator
+
+Arrow operator in ES6 of JavaScript
+examples::
+Const functionName = (arg1, arg2 ….) => {
+    // body of function
+}
+
+tradition way::
+Function functionName(arg1, arg2….)
+{
+    // body of function
+}
+
