@@ -1,0 +1,609 @@
+for type script compiler load into system for globally accessablity:
+sudo npm -g install typescript
+
+
+tsc for type script compiler
+
+for lite server installation::
+ npm install lite-server --save-dev
+
+//string
+//number
+//boolean (true /false)
+//any
+user define types::
+let myrealAge;
+myrealAge=44;
+myrealAge='hello';
+
+or either::
+let myrealAge:any;
+
+//array::
+let hobbies=['hello','cooking'];
+
+//typles
+let address:any[string,number]=['hekki',2]
+
+//enums
+enum Color {
+   grey,//0
+   red=55,//1//override red to 55
+   white//2
+}
+
+let mycolor:Color =Color.grey;
+
+
+//fuctions
+//return type string
+function myfunc():string{
+    returm myname;
+}
+
+fuction myfunc(a:string,b:string){
+    return a*a;
+}
+
+let a;
+a=myfunc;
+a('ab','bc');
+
+let myfun:(a:String,b:string)=>number;
+
+
+//objects
+let userdata={
+    name="",
+    age=""
+}
+
+
+let user:{name:string,age:number}={
+    name:'aab',
+    age:4
+}
+
+let complex:{data:number[],output:(all:boolean)=>number[]}={
+    data=[1,2,3],
+    output:function(all:boolean):number[]{
+        return this.data;
+    }
+}
+
+//type alias
+type complex={data:number[],output:(all:boolean)=>number[]};
+
+//union type
+let myreal :string |number=24;
+myreal=44;//runs
+myreal=true;//not running
+
+
+//check types
+if(typeof myreal=='string'){
+    console.log('pring')
+}
+//never type: never return something
+function neverreturn:never{
+    throw new Error('an errror');
+}
+
+
+nullable types//
+let canbenull=12;
+canbenull=null;//null assign
+let canalso;//undefine return assign
+canalso=null;
+
+///strictNullChecks:true(inside compiler options in tsconfig.json)
+
+how it compiled::
+changing compiler behaviour::
+    changes in tsconfig.json file
+debugging type scripts
+      "sourceMap": true,  in tsconfig.json file
+    noImplicitAny": true,
+more compiler options::
+https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+
+compiler improvement::
+strictNullChecks": true for any initalization error check
+
+noUnusedParameters": true,  for unused parms to check in project
+
+let and const
+var ver='gg'//global scope variable
+let vari='block'//block scope variable
+const var='va'//constant value cannt change//imutable data structure
+
+const multiple=function(numb1:number,numb2:number):number{
+    return numb1*numb2;
+}
+
+const multiple=(numb1:number,numb2:number)=>numb1*numb2;
+
+default parms::
+
+const coutn=(start:number=10):void=>{
+
+}
+
+coutn()//runs withoud error
+arrray:store multiple value
+list :store list of value
+spread oprator::
+const value=[1,2,3,4,4];//array of numbers
+Math.max(1,4,5,6,7,7)//list of numbers
+Math.max(...value)//spread oprator
+
+rest oprator::
+function makearray(args1:number,args2:number){
+    return [arg1,arg2];
+}
+
+//return array rest oprator
+function makearray(...args:number[]){
+    return args;
+}
+
+makearray(1,2,3);
+
+
+destructuring::
+
+const myhobbies=['ab','bc'];
+const [hobby1,hobby2]=myhobbies//stores into hobby1 and hobby2
+
+destructuring of objects::
+
+const userdata={username:'name',age:4}
+
+const {username,age}=userdata;
+
+console.log(username+:""+age);//printing o/p
+
+or
+const {username:myname,age:myage} =userdata;
+
+console.log(myname+:""+myage);//printing o/p
+
+//templete literal
+
+const username="Max";
+const greeting='
+this is  a heading
+i'm ${username}.
+this is cool';
+
+class concepts::in type script
+in es6 everything public we are using this key word for assigning values in es6
+class Person{
+    public name:String;//default is public
+    private type:String;
+    protected school:String;
+
+    constructor(name:string,public username:string){//create new usernmae property in class
+        this.name=name;
+
+    }
+
+    }
+
+    const person=new Person("my","helo");
+    console.log(person)//return an object
+
+examples:::
+ts
+class Person {
+    private name:string;
+    private id:string;
+
+    constructor(name, id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    private setName(name:string) {
+        this.name = name;
+    }
+
+    printId() {
+        console.log(this.id);
+    }
+
+    printName() {
+        console.log(this.name);
+    }
+}
+
+const val = new Person("fd", "dfd");
+val.printId();
+val.printName();
+
+js
+var Person = (function () {
+    function Person(name, id) {
+        this.name = name;
+        this.id = id;
+    }
+    Person.prototype.setName = function (name) {
+        this.name = name;
+    };
+    Person.prototype.printId = function () {
+        console.log(this.id);
+    };
+    Person.prototype.printName = function () {
+        console.log(this.name);
+    };
+    return Person;
+}());
+var val = new Person("fd", "dfd");
+val.printId();
+val.printName();
+
+getter and setter::
+
+static properties:
+static PI:number=3.14;
+
+abstract class
+
+abstract class Project{
+    projectName:string="project";
+
+    abstract changeName(name:string):void;
+
+    calcBudget(){
+        return this.projectName;
+    }
+}
+
+class ProjectMain extends Project{
+}
+
+singleton::
+
+class Project{
+    private static instance:Project;
+    static getInstance(){
+        if(!Project.instance){
+            Project.instance=new Project();
+        }
+        return instance;
+    }
+}
+
+readonly properties
+
+private readonly name:string;
+
+namespacecing::
+namespace MyName {
+    export function printName(name:string) {
+        return name;
+    }
+}
+
+MyName.printName('hello');
+
+include every js file into html file
+or either bundle in same js
+by using tsc --outFile app.js abc.js bc.js cd.js
+
+namespace import::
+///<reference path="abc.ts"/>
+
+namespace MyName {
+export namespace abc{
+    export function printName(name:string) {
+        return name;
+    }
+   }
+}
+
+
+include in js
+import abc=MyName.abc;
+
+disadvantages::
+
+filename.ts
+export const PI=3.14;
+
+export function namePrint(name:string){
+    console.log(name);
+}
+
+modules::
+module adding::
+import {PI,namePrint} from './dir/filename';//move one above from current dir then file withourt extension
+import * as Circle from './dir/filename';//then use as.namePrint()
+import ca from './dir/filename';//then use ca.namePrint()
+
+
+
+for bundling js in single module gives error of amd and systme moudle are supported alongside --outfile
+so we did
+in tsconfig.json
+"module":"amd"//instead of commonjs
+
+module loader in js::
+amd ,system etc
+
+systemjs module loader
+
+till now not adding module in single file
+
+npm install systemjs --save //both in dev and pro env
+
+in main html file
+<script src="/node_modules/systemjs/dist/system.js"/>
+ <script>
+        SystemJS.config({
+            baseURL:'/'
+            defaultJSExtension:true//if not found file path extesion
+        });
+        SystemJS.import('app.js');
+    </script>
+
+now run tsc command
+
+module adding done::
+
+namespaces::organize with js object ,dependcies difficult to manage
+modules::organize with real module ,modul required,explicit dependecies cleary define
+
+interfaces::
+
+interface NamePerson{
+    firstName:string;
+     age?:number;//optionals
+     [propName:string]:any;//create new properties which u dont know name of properties
+     greet(lastName:string):void;
+}
+
+function changeName(person:NamePerson){
+    person.firstName='akki';
+}
+
+function greeting(person:NamePerson){
+    console.log('hello'+person.firstName);
+}
+
+const person:NamePerson={
+    firstName:"max",
+    hobbies:['ab','cd'],
+    greet(lastName:string){
+        console.log('hi i am '+this.firstName+""+lastName);
+    }
+}
+
+changeName(person);
+greet(person);
+
+interfaces in class
+interfaces in function
+
+interface doubleValue{
+    (number1:number,number2:number):number;
+}
+
+let mydoublefun=doubleValue;
+mydoublefun=function(value1:number,value2:number){
+    return value1+value2;
+}
+
+genric::
+function printdata<T>(data:T){
+    console.log(data)
+}
+
+printdata("dfs");
+
+build in genric::
+const testArray:Array<number>=[1,2,3];
+
+function printAll<T>(args:T[]){
+    args.forEach((element)=>console.log(element))
+}
+
+const echo:<T> (data:T)=>T=printAll;
+
+class Simple<T extends number|string>{
+    baseValue:T;
+    multiValue:T;
+
+}
+
+
+more then one genric::
+class Simple<T extends number|string,U extends string>{
+    baseValue:T;
+    multiValue:U;
+
+}
+
+decorator::
+function attached to method,properties,function etc.
+experimentalDecorators": true      for not showing warnings
+
+function logged(constru:Function){
+    console.log(constru);
+}
+
+@logged
+class Abc{
+    constructor(){
+        console.log('jsdlfj');
+    }
+}
+
+@logging(true)//attach result to logggin decorator
+class Abc{
+    constructor(){
+        console.log('jsdlfj');
+    }
+}
+
+
+decorator factory::
+function logging(isAttach:boolean){
+    return isAttach?logged:null;
+}
+
+function printalbe(consts:Function){
+    consts.prototype.print=function(){
+        console.log(this);
+    }
+}
+prototype::kind of scope or kind of parent class of all objects
+
+@logging(false)
+@printalbe
+class Plant{
+    name="hello";
+}
+
+const pla=new Plant();
+(<any>pla).print();
+
+typescrip hand book in offical docs
+
+
+property decorator::
+function overwrite(value:boolean) {
+    return function (target:any, propName:string):any {
+        const newDes:PropertyDescriptor = {
+            writable: value
+        }
+        return newDes;
+    }
+}
+
+parameter decorator::
+typescriptlang.org/inex
+typescriptlang.org/docs
+
+
+using ts for creating jquery framework::
+
+jquery creation::
+
+installing third party lib:
+system configure
+
+index.html
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/node_modules/systemjs/dist/system.js"/>
+    <script>
+        SystemJS.config({
+            map:{
+                "jQuery":"node_modules/jquery/dist/jquery.min.js"
+            },
+            baseURL:'/'
+        });
+        SystemJS.import('app.js');
+    </script>
+</head>
+<div id="app">change jaquery</div>
+
+app.js
+
+import "jQuery";//same define in index.html
+
+$("#app").css({"background-color":"green"});
+
+three approapch 117
+1:
+translating js into type script::
+definitelyTyped library github
+DefinitelyTyped/jquery/jquery.d.ts
+
+2:
+npm install -g typings
+typings install dt~jquery --global --save
+typings.json file created
+
+3:
+npm install --save-dev @type/jquery
+
+typescript workflow::
+tsc -w  (in watching mode)
+
+for compiling files in tsconfig.ts
+"files":[
+    "app.js",
+    "./typings/index.d.ts"
+]
+
+configure tsconfig.json file :
+tsc -p config/filepath
+
+Gulp workflow::adding type script in gulp workflow
+
+npm install --save-dev gulp gulp-typescript
+
+webpack installation with typescript::
+npm install --save-dev webpack ts-loader
+
+type script integation with reactjs::
+npm install react react-dom --save
+
+webpack workflow::
+adding react js typescript definition:
+
+typings install dt~react dt~react-dom --global --save
+
+web pack installation
+
+npm install webpack ts-loader --save-dev
+
+configure webpack
+module.exports = {
+    entry:"./src/index.tsx",
+    output:{
+      filename:'./dist/bundle.js'
+    },
+    devtool:'source-map',
+    resolve:{
+        extenstion:["",".ts",".tsx",".js"]
+    },
+
+    module: {
+        loaders:[
+            {test:/\.tsx?$/,loader:"ts-loader"}
+        ]
+    },
+};
+
+
+export  class Home extends React.Component{
+
+}
+
+running webpack::
+just write script inside package.json::
+under script:
+"start":"lite-server",
+"build":"webpack"
+
+tsc configure
+tsc --init
+in tsconfig.json
+in compile options write:
+"jsx":"react"
+
+
+type management::
+for management of bridge b/w type and js we configure through type
+npm install --save-dev @types/react @types/react-dom
+
+easier type script management in typescript 2.0
+The official TypeScript Documentation is actually really great, so definitely have a look at it: http://www.typescriptlang.org/
+
+Want to use many ES6 Features? Check the Compatibility Chart: http://kangax.github.io/compat-table/es6/
+
+Want to learn more about TypeScript and Metadata? Scroll to the very bottom of this Article: https://www.typescriptlang.org/docs/handbook/decorators.html
