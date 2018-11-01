@@ -1,0 +1,119 @@
+utors api
+        //thrad pool recycle and reused
+        //decouple thread creation and execution
+        //a task-queue holds the task
+        //threads are stopped when executor service is stopped
+        //shutdownnow terminate all threads
+        //runnable and callable interface
+
+
+        //framework classes::
+        //interface//Executor(RunnableTask)  ::void execute(Runnable task);
+        //interface//ExecutorService()  :://life cycle init running destruction
+        //class // <T> Future<T> submit(Callable<T> task)
+        //interface //Executors():://
+
+        //newFixedThreadPool(mainThread)//fixed thread pool size
+        //cacheThreadpool==>reuse thread if no worker thread then it create
+        //new thread
+        //newsinglethreadexecutor()==>only single thread running in background
+        //it execute thread one by one from queue
+        //newSingleThreadScheduledExecutor()::running after certain
+        // delay
+        //callable return some values but runnable not return anything
+        //interface //Future():://
+
+        //all the exector service are instance of threadpoolexecutors
+        //ExecutorFactoryClass
+        //ThreadPoolExecutor
+        //Future interface
+
+
+        //Fixed thread Pool
+        //Cached Thread Pool
+        //Single Thread Executor(not a pool)
+        //Scheduled Thread Pool
+        //Single Thread Scheduled Executor(not a pool)
+
+        //examples shows of fixed,cached and single
+        //using fixed thread pools::
+
+        //cache thread pool
+        //as manay thread create whenever it requires
+        //no concept of task queue
+        //no concept of wait queue
+        //blocking queue thread safe
+
+        //if suppose u have 1000 jobs how can they internally work
+        //within run methods
+        //if cpu have 4 cores at a time it only runs four threads
+
+        //four types of thread pool
+        //fixed thread pools
+        //if u dont have fixed size threads then used synchronize thread pool used
+        //cached thread pools create as many thread required if thread going to idle it automatically
+        //destroy then it slowally down
+        //schedule thread pool after certain delay it can run
+        //task to run after 10 second delay
+        //service.schedule(task,10,second)
+        //
+        //like Service.schedule scedule after certain delay like every 10 second
+        //service.scheduleAtFixedRate(delay queue create for it) it can keep triger after certain time
+        //
+        //repeate after every dealy inital delay is initaial delay and wait for task to complete then execute
+        //service.scheduleAtFixedDelay(task,initaldelay,delay,timeunit) //run after certain time in respect of previous time
+        //
+        //single thread executor
+        //
+        //pool size creation
+        //thread ThreadPoolExecutor() corepoolsize,maxpoolsize,,blockingqueue,threadfactory(create new thread)
+        //threadfactory the factroy to use to create new thread
+        //handler for submit and reject task
+        //workqueue queue to store the task
+        //core pools shrinek
+        // fixedThreadPool corepoolsize max polol size both are same
+        //keep alive time 0
+        //scheduledthreadpool keep alive time 60
+        //in cacheThreadPool core pool size 0,Integer.Max_value keep alive time 60
+        //single thread 1,1 and keep alive time 0
+
+        //allowcorethreadtimeout defalutl core pool size increase and decrease
+        //types of queue
+        //custom FixedThreadPool SingleThreaExecutor LinkedBlockingQueue(it is not limiting in size) Array blocking queue is limiting in size
+        //CachedThreadPool SynchronousQueue(data strucutre unlimited thread)
+        //ScheduledThreadPool DelayedWorkQueue (special queue that deals with schedule /time delays)
+        //Arrayblocking queue(bounded queue)
+        //Policies in thread pool AbortPolicy,DiscardPolicy,DiscardOldesPolicy,CallerRunsPolicy
+        //
+//        ExecutorService service=new ThreadPoolExecutor(10,100,120,TimeUnit.SECONDS,
+//                new ArrayBlockingQueue<Runnable>(300),
+//                new CustomRejectionHandler());
+//        class CustomRejectionHandler implements RejectedExecutionHandler{
+//
+//            @Override
+//            public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+//
+//            }
+//        }
+
+        //life cycle method of thread pool
+        //service.shutdown()//wait for all task to complete not take any new task
+        //serice.isShutdown()//will return true since shutdown begin
+        //service.isTerminated()//will retrurn true if all tasks are completed
+        //service.shutdownnow()  //will initatiate shutdown and retrun all queue tasks
+
+        // Runnable,callable(return something) (interface)
+        //static class Task implements Callable<ReturnClass>{
+        //public Integer call(){
+        //return new ReturnClass();
+        // }
+        // }
+        //ExecutorService service=Executors.newFixedThreadPool();
+        //Future<ReturnClass> future=service.submit(new Task())
+        //ReturnClass classReturn=future.get();
+
+//        List<Future> allfuture=new ArrayList();
+//        for(int i=0;i<100;i++){
+//            Future<? > future=service.submit(new TaskData());
+//            allfuture.add(future);
+//        }
